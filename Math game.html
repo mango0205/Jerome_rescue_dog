@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải cứu bạn chó lạc</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+        .game-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e6f3ff;
+            border-radius: 5px;
+        }
+        input {
+            padding: 5px;
+            margin: 10px 0;
+            width: 100px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .response {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .correct {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .wrong {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+        .helicopter {
+            width: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+        .fireworks {
+            width: 400px;
+            display: none;
+            margin: 20px auto;
+        }
+        .congrats-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Jerome giải cứu bạn chó!</h1>
+        <p>Jerome là bạn máy bay cần giải cứu chú chó bị lạc trong rừng sâu. Hãy giúp Jerome hoàn thành nhiệm vụ!</p>
+
+        <div class="question" id="question1">
+            <h3>Câu hỏi 1: Tính khoảng cách đến khu rừng</h3>
+            <img id="helicopter1" class="helicopter" src="helicopter.png" alt="Máy bay trực thăng">
+            <p>Giải phép toán: 5 + 6 = ?</p>
+            <input type="number" id="answer1">
+            <button onclick="checkAnswer(1)">Trả lời</button>
+            <div id="result1" class="response"></div>
+        </div>
+
+        <div class="question" id="question2" style="display: none;">
+            <h3>Câu hỏi 2: Tính lượng nhiên liệu cần nạp</h3>
+            <img id="helicopter2" class="helicopter" src="helicopter_flying.png" alt="Máy bay trực thăng">
+            <p>Giải phép toán: 7 + 12 = ?</p>
+            <input type="number" id="answer2">
+            <button onclick="checkAnswer(2)">Trả lời</button>
+            <div id="result2" class="response"></div>
+        </div>
+
+        <div class="question" id="question3" style="display: none;">
+            <h3>Câu hỏi 3: Tính độ dài dây cần thả</h3>
+            <img id="helicopter3" class="helicopter" src="helicopter_rescue.png" alt="Máy bay trực thăng">
+            <p>Giải phép toán: 8 + 9 = ?</p>
+            <input type="number" id="answer3">
+            <button onclick="checkAnswer(3)">Trả lời</button>
+            <div id="result3" class="response"></div>
+        </div>
+
+        <img id="dog-rescue" src="dog_rescue.png" alt="Chú chó được giải cứu!" style="display:none;">
+        <img id="fireworks" class="fireworks" src="fireworks.gif" alt="Pháo hoa" style="display:none;">
+        <p id="congrats" class="congrats-text" style="display:none;">🎉 Chúc mừng! Bạn đã giải cứu chú chó thành công! 🎉</p>
+    </div>
+
+    <script>
+        function checkAnswer(questionNumber) {
+            const answer = parseInt(document.getElementById(`answer${questionNumber}`).value);
+            const resultDiv = document.getElementById(`result${questionNumber}`);
+            const correctAnswers = {1: 11, 2: 19, 3: 17};
+
+            if (answer === correctAnswers[questionNumber]) {
+                resultDiv.innerHTML = "✅ Chính xác!";
+                resultDiv.className = "response correct";
+
+                if (questionNumber === 3) {
+                    setTimeout(() => {
+                        document.getElementById("dog-rescue").style.display = "block"; 
+                        document.getElementById("fireworks").style.display = "block"; 
+                        document.getElementById("congrats").style.display = "block"; 
+                    }, 1000);
+                }
+            } else {
+                resultDiv.innerHTML = "❌ Sai! Máy bay bị chặn!";
+                resultDiv.className = "response wrong";
+            }
+        }
+    </script>
+</body>
+</html>
+</html>
